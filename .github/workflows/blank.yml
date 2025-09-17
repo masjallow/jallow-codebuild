@@ -62,3 +62,12 @@ jobs:
      uses: hashicorp/setup-terraform@v3
   with:
     terraform_version: "1.5.7"
+
+    name: Initializing Terraform
+    run: terraform init
+
+    name: Plan the Terraform
+    run: terraform plan
+
+    name: Applying the Terraform
+    run: terraform apply
