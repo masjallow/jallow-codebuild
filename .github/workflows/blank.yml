@@ -16,6 +16,9 @@ on:
   env:
     Environment: staging
     Name: Demo-Class
+    AWS_ACCESS_KEY: ${{ secret.AWS_ACCESS_KEY }}
+    AWS_SECRET_KEY: ${{ secret.AWS_SECRET_KEY }}
+    AWS_DEFAULT_REGION: us-east-1
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -47,3 +50,15 @@ jobs:
 
       - name: printing the env's
         run: echo $NAME
+
+  terraform:
+    - run-on: ubuntu-latest
+    steps:
+
+    -name: Checkout code
+     uses: actions/setup-node@v5
+
+     name: Install Terraform
+     uses: hashicorp/setup-terraform@v3
+  with:
+    terraform_version: "1.5.7"
